@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:google_mlkit_pose_detection/google_mlkit_pose_detection.dart';
 import '../models/session.dart';
 import '../services/database_service.dart';
+import '../services/location_service.dart';
 import '../services/pose_detector_service.dart';
 import '../theme/app_theme.dart';
 import '../widgets/camera_overlay.dart';
@@ -25,6 +26,8 @@ class _TrainingScreenState extends State<TrainingScreen> {
   bool _cameraPermissionDenied = false;
   bool _paused = false;
 
+  String? _locationName;
+
   // Timer
   int _elapsedSeconds = 0;
   Timer? _timer;
@@ -40,6 +43,12 @@ class _TrainingScreenState extends State<TrainingScreen> {
     super.initState();
     _initCamera();
     _startTimer();
+    _fetchLocation();
+  }
+
+  Future<void> _fetchLocation() async {
+    final name = await LocationService.getCurrentLocationName();
+    if (mounted) setState(() => _locationName = name);
   }
 
   Future<void> _initCamera() async {
@@ -163,6 +172,7 @@ class _TrainingScreenState extends State<TrainingScreen> {
       duration: _elapsedSeconds,
       bestSet: best,
       sets: allSets,
+      locationName: _locationName,
     );
 
     await DatabaseService.instance.insertSession(session);

@@ -75,7 +75,8 @@ class _StatsScreenState extends State<StatsScreen> {
               onRefresh: _load,
               child: SingleChildScrollView(
                 physics: const AlwaysScrollableScrollPhysics(),
-                padding: const EdgeInsets.symmetric(horizontal: 16),
+                padding: EdgeInsets.fromLTRB(
+                    16, 0, 16, MediaQuery.of(context).padding.bottom + 16),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -85,9 +86,9 @@ class _StatsScreenState extends State<StatsScreen> {
                     _buildBarChart(),
                     const SizedBox(height: 24),
                     _buildLineChart(),
-                    const SizedBox(height: 32),
+                    const SizedBox(height: 48),
                     _buildClearButton(),
-                    const SizedBox(height: 32),
+                    const SizedBox(height: 40),
                   ],
                 ),
               ),

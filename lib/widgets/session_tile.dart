@@ -53,6 +53,24 @@ class _SessionTileState extends State<SessionTile> {
                           style: const TextStyle(
                               color: AppColors.textDim, fontSize: 12),
                         ),
+                        if (s.locationName != null) ...[
+                          const SizedBox(height: 3),
+                          Row(
+                            children: [
+                              const Icon(Icons.location_on,
+                                  size: 11, color: AppColors.textDim),
+                              const SizedBox(width: 2),
+                              Expanded(
+                                child: Text(
+                                  s.locationName!,
+                                  style: const TextStyle(
+                                      color: AppColors.textDim, fontSize: 11),
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
                       ],
                     ),
                   ),

@@ -19,7 +19,7 @@ class DatabaseService {
     final path = join(dbPath, 'pullup_tracker.db');
     return openDatabase(
       path,
-      version: 1,
+      version: 2,
       onCreate: (db, version) async {
         await db.execute('''
           CREATE TABLE sessions (
@@ -28,9 +28,17 @@ class DatabaseService {
             total_reps INTEGER NOT NULL,
             duration INTEGER NOT NULL,
             best_set INTEGER NOT NULL,
-            sets TEXT NOT NULL
+            sets TEXT NOT NULL,
+            location_name TEXT
           )
         ''');
+      },
+      onUpgrade: (db, oldVersion, newVersion) async {
+        if (oldVersion < 2) {
+          await db.execute(
+            'ALTER TABLE sessions ADD COLUMN location_name TEXT',
+          );
+        }
       },
     );
   }

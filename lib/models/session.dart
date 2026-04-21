@@ -7,6 +7,7 @@ class Session {
   final int duration; // seconds
   final int bestSet;
   final List<int> sets;
+  final String? locationName;
 
   Session({
     this.id,
@@ -15,6 +16,7 @@ class Session {
     required this.duration,
     required this.bestSet,
     required this.sets,
+    this.locationName,
   });
 
   Map<String, dynamic> toMap() {
@@ -25,6 +27,7 @@ class Session {
       'duration': duration,
       'best_set': bestSet,
       'sets': jsonEncode(sets),
+      'location_name': locationName,
     };
   }
 
@@ -36,6 +39,7 @@ class Session {
       duration: map['duration'] as int,
       bestSet: map['best_set'] as int,
       sets: List<int>.from(jsonDecode(map['sets'] as String) as List),
+      locationName: map['location_name'] as String?,
     );
   }
 
