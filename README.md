@@ -38,12 +38,7 @@ Performing pull-ups usually requires both hands to remain engaged, which makes i
 
 ## Demo
 
-> **TODO — add a screen recording or GIF here.**
-> Record a ~30-second clip showing the camera counting a set of pull-ups, then the session summary screen.
-
-<!-- Example:
-![Demo](assets/demo.gif)
--->
+<video src="assets/demo.webm" controls width="320"></video>
 
 ---
 
